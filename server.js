@@ -21,7 +21,7 @@ const CLIENT_URL = process.env.CLIENT_URL || `http://localhost:${PORT}`;
 // Stripe is only initialized if a secret key is present, so the rest of the
 // site still works even before you've added your Stripe test keys.
 const stripe = process.env.STRIPE_SECRET_KEY
-    ? require("stripe")(process.env.STRIPE_SECRET_KEY)
+    ? require("stripe")(process.env.STRIPE_SECRET_KEY.trim())
     : null;
 
 // ==========================
