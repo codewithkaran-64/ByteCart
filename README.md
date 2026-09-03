@@ -201,3 +201,4 @@ All of this is vanilla CSS/JS — no animation library required, so there's noth
 - Add a Stripe webhook handler for production-grade payment confirmation
 - Add product detail pages
 - Deploy the backend (Render/Railway) and connect it to MongoDB Atlas + live Stripe keys for a real demo link
+"# ByteCart" 
