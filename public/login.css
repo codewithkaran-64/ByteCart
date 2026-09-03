@@ -1,0 +1,357 @@
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    padding: 20px;
+}
+
+
+.auth-container {
+    width: 100%;
+
+    max-width: 420px;
+}
+
+
+.auth-box {
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+}
+
+
+.auth-logo {
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+
+.auth-box h1 {
+    color: #667eea;
+
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    color: #777;
+
+    margin-bottom: 30px;
+}
+
+
+.auth-box form {
+    text-align: left;
+}
+
+
+.auth-box label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #444;
+}
+
+
+.auth-box input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 4px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+.auth-box input:focus {
+    outline: none;
+
+    border-color: #667eea;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(102, 126, 234, 0.15);
+}
+
+
+.auth-box input.invalid {
+    border-color: #e74c3c;
+}
+
+
+.auth-box input.valid {
+    border-color: #27ae60;
+}
+
+
+/* ==========================
+   PASSWORD SHOW/HIDE
+   ========================== */
+
+.password-field {
+    position: relative;
+}
+
+
+.password-field input {
+    padding-right: 44px;
+}
+
+
+.toggle-password {
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    margin-top: -2px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    opacity: 0.6;
+
+    transition: opacity 0.2s;
+}
+
+
+.toggle-password:hover {
+    opacity: 1;
+}
+
+
+/* ==========================
+   FIELD ERRORS
+   ========================== */
+
+.field-error {
+    display: block;
+
+    min-height: 16px;
+
+    color: #e74c3c;
+
+    font-size: 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==========================
+   PASSWORD STRENGTH METER
+   ========================== */
+
+.strength-meter {
+    height: 5px;
+
+    background: #eee;
+
+    border-radius: 3px;
+
+    overflow: hidden;
+
+    margin-top: -2px;
+
+    margin-bottom: 4px;
+}
+
+
+.strength-bar {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 3px;
+
+    background: #e74c3c;
+
+    transition: width 0.25s ease, background 0.25s ease;
+}
+
+
+.strength-label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    min-height: 14px;
+}
+
+
+/* ==========================
+   SUBMIT BUTTON LOADING STATE
+   ========================== */
+
+.auth-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+.auth-button:disabled {
+    opacity: 0.75;
+
+    cursor: not-allowed;
+}
+
+
+.button-spinner {
+    width: 16px;
+
+    height: 16px;
+
+    border: 2.5px solid rgba(255, 255, 255, 0.4);
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation: spin 0.7s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.auth-button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.auth-button:hover {
+    background: #5568d9;
+}
+
+
+.message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.switch-page {
+    margin-top: 25px;
+
+    color: #555;
+}
+
+
+.switch-page a {
+    color: #667eea;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+.back-home {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: #777;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+
+.back-home:hover {
+    color: #667eea;
+}
+
+
+@media (max-width: 500px) {
+
+    .auth-box {
+        padding: 30px 20px;
+    }
+}

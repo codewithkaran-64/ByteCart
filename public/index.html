@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ByteCart - Online Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            🛒 ByteCart
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+            >
+
+            <button onclick="handleSearch()">
+                🔍
+            </button>
+
+        </div>
+
+        <nav>
+
+            <span
+                id="userName"
+                class="user-name"
+            ></span>
+
+            <button
+                id="loginButton"
+                onclick="goToLogin()"
+            >
+                Login
+            </button>
+
+            <button
+                id="logoutButton"
+                onclick="logout()"
+                class="hidden"
+            >
+                Logout
+            </button>
+
+            <button
+                class="cart-button"
+                id="cartButton"
+                onclick="showCart()"
+            >
+                🛒 Cart
+                (<span id="cartCount">0</span>)
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO (parallax layers) -->
+
+    <section class="hero" id="hero">
+
+        <div class="hero-layer hero-layer-bg"></div>
+
+        <div class="hero-layer hero-layer-glow"></div>
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to ByteCart
+            </h1>
+
+            <p>
+                Smart shopping, simplified.
+            </p>
+
+            <button
+                onclick="scrollToProducts()"
+                class="shop-now"
+            >
+                Shop Now
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <section class="category-bar">
+
+        <div
+            id="categoryList"
+            class="category-list"
+        >
+            <button class="category-chip active" data-category="All" onclick="filterByCategory('All')">All</button>
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <main id="productsSection">
+
+        <h2 id="productsHeading">
+            Our Products
+        </h2>
+
+        <div
+            id="products"
+            class="products"
+        >
+            Loading products...
+        </div>
+
+    </main>
+
+
+    <!-- CART DRAWER -->
+
+    <div
+        id="cartOverlay"
+        class="cart-drawer-overlay"
+        onclick="closeCart()"
+    ></div>
+
+    <aside
+        id="cartDrawer"
+        class="cart-drawer"
+    >
+
+        <div class="cart-drawer-header">
+
+            <h2>Your Cart</h2>
+
+            <button
+                class="close-button"
+                onclick="closeCart()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div id="cartItems" class="cart-drawer-items"></div>
+
+        <div class="cart-drawer-footer">
+
+            <div class="cart-total">
+                <span>Total</span>
+                <strong>₹<span id="cartTotal">0</span></strong>
+            </div>
+
+            <button
+                class="checkout-button"
+                id="checkoutButton"
+                onclick="placeOrder()"
+            >
+                Checkout with Stripe
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- TOAST NOTIFICATIONS -->
+
+    <div id="toastContainer" class="toast-container"></div>
+
+
+    <footer>
+
+        <p>
+            © 2026 ByteCart. Built as a B.Sc. IT internship / portfolio project.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

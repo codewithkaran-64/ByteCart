@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Register - ByteCart</title>
+
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+
+            <div class="auth-logo">
+                🛒
+            </div>
+
+            <h1>
+                ByteCart
+            </h1>
+
+            <p class="subtitle">
+                Create your account
+            </p>
+
+
+            <form id="registerForm" novalidate>
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <span class="field-error" id="nameError"></span>
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <span class="field-error" id="emailError"></span>
+
+
+                <label>
+                    Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Minimum 6 characters"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        data-target="password"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+                <div class="strength-meter">
+
+                    <div class="strength-bar" id="strengthBar"></div>
+
+                </div>
+
+                <span class="strength-label" id="strengthLabel"></span>
+
+                <span class="field-error" id="passwordError"></span>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="submitButton"
+                >
+                    <span class="button-text">Create Account</span>
+                </button>
+
+            </form>
+
+
+            <p
+                id="message"
+                class="message"
+            ></p>
+
+
+            <p class="switch-page">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Back to Shop
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

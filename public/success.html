@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Confirmed - ByteCart</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="result-page.css">
+
+</head>
+
+<body>
+
+    <div class="result-page">
+
+        <div class="result-card" id="resultCard">
+
+            <div class="result-spinner" id="loadingState">
+
+                <div class="spinner"></div>
+
+                <p>Confirming your payment...</p>
+
+            </div>
+
+            <div
+                class="result-content hidden"
+                id="successState"
+            >
+
+                <div class="result-icon success-icon">
+                    <svg viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16"/>
+                    </svg>
+                </div>
+
+                <h1>Payment Successful!</h1>
+
+                <p class="result-subtitle">
+                    Thank you — your order has been placed.
+                </p>
+
+                <div class="order-summary" id="orderSummary"></div>
+
+                <div class="order-total-row">
+                    <span>Total Paid</span>
+                    <strong id="orderTotal">₹0</strong>
+                </div>
+
+                <a href="index.html" class="result-button">
+                    Continue Shopping
+                </a>
+
+            </div>
+
+            <div
+                class="result-content hidden"
+                id="errorState"
+            >
+
+                <div class="result-icon error-icon">✕</div>
+
+                <h1>Something Went Wrong</h1>
+
+                <p class="result-subtitle" id="errorMessage">
+                    We couldn't confirm your payment. If money was deducted, it will be refunded automatically.
+                </p>
+
+                <a href="index.html" class="result-button">
+                    Back to Shop
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Clear the local cart now that checkout is complete/attempted
+        localStorage.removeItem("bytecart_cart");
+
+        const params = new URLSearchParams(window.location.search);
+
+        const sessionId = params.get("session_id");
+
+
+        async function confirmOrder() {
+
+            const loadingState = document.getElementById("loadingState");
+            const successState = document.getElementById("successState");
+            const errorState = document.getElementById("errorState");
+
+            if (!sessionId) {
+
+                loadingState.classList.add("hidden");
+                errorState.classList.remove("hidden");
+
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `/api/checkout-session/${sessionId}`
+                );
+
+                const data = await response.json();
+
+                if (!response.ok || data.paymentStatus !== "paid") {
+
+                    loadingState.classList.add("hidden");
+                    errorState.classList.remove("hidden");
+
+                    if (data.message) {
+
+                        document.getElementById("errorMessage").textContent =
+                            data.message;
+                    }
+
+                    return;
+                }
+
+                const summary = document.getElementById("orderSummary");
+
+                data.order.items.forEach(item => {
+
+                    const row = document.createElement("div");
+
+                    row.className = "order-summary-row";
+
+                    row.innerHTML = `
+                        <span>${item.p_name} × ${item.quantity}</span>
+                        <span>₹${(item.p_price * item.quantity).toFixed(2)}</span>
+                    `;
+
+                    summary.appendChild(row);
+                });
+
+                document.getElementById("orderTotal").textContent =
+                    "₹" + data.order.total.toFixed(2);
+
+                loadingState.classList.add("hidden");
+                successState.classList.remove("hidden");
+
+            } catch (error) {
+
+                console.error(error);
+
+                loadingState.classList.add("hidden");
+                errorState.classList.remove("hidden");
+            }
+        }
+
+        confirmOrder();
+
+    </script>
+
+</body>
+
+</html>
